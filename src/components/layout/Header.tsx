@@ -69,11 +69,11 @@ const Header: React.FC = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" className="btn-hero-outline">
-              Login
+            <Button variant="outline" className="btn-hero-outline" asChild>
+              <Link to="/login">Login</Link>
             </Button>
-            <Button className="btn-hero">
-              Sign Up
+            <Button className="btn-hero" asChild>
+              <Link to="/signup">Sign Up</Link>
             </Button>
           </div>
 
@@ -110,11 +110,11 @@ const Header: React.FC = () => {
                 </button>
               ))}
               <div className="pt-4 pb-2 space-y-2">
-                <Button variant="outline" className="w-full btn-hero-outline">
-                  Login
+                <Button variant="outline" className="w-full btn-hero-outline" asChild>
+                  <Link to="/login">Login</Link>
                 </Button>
-                <Button className="w-full btn-hero">
-                  Sign Up
+                <Button className="w-full btn-hero" asChild>
+                  <Link to="/signup">Sign Up</Link>
                 </Button>
               </div>
             </div>
