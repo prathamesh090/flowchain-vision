@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Eye, EyeOff, Building2, Mail, Lock } from "lucide-react";
+import authPattern from "@/assets/auth-pattern.jpg";
+import authShapes from "@/assets/auth-shapes.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -47,8 +49,29 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div 
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-accent/20 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${authPattern})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'soft-light'
+      }}
+    >
+      {/* Background decorative shapes */}
+      <div 
+        className="absolute inset-0 opacity-20 bg-no-repeat bg-center bg-contain"
+        style={{
+          backgroundImage: `url(${authShapes})`,
+          backgroundSize: '80%',
+          backgroundPosition: 'right center'
+        }}
+      />
+      
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/30 backdrop-blur-[1px]" />
+      
+      <div className="max-w-md w-full space-y-8 relative z-10">
         {/* Header */}
         <div className="text-center">
           <Link to="/" className="inline-flex items-center space-x-2 text-2xl font-bold text-primary">
@@ -63,10 +86,12 @@ const Login = () => {
           </p>
         </div>
 
-        <Card className="mt-8">
-          <CardHeader>
-            <CardTitle>Sign in to your account</CardTitle>
-            <CardDescription>
+        <Card className="mt-8 card-elevated backdrop-blur-sm bg-background/95 border-primary/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Sign in to your account
+            </CardTitle>
+            <CardDescription className="text-muted-foreground/80">
               Enter your credentials to access your workspace
             </CardDescription>
           </CardHeader>

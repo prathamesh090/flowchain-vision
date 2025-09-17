@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Eye, EyeOff, Building2, Mail, Lock, User, Phone, MapPin, Briefcase } from "lucide-react";
+import authPattern from "@/assets/auth-pattern.jpg";
+import authShapes from "@/assets/auth-shapes.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -111,8 +113,29 @@ const SignUp = () => {
   const watchPassword = form.watch("password");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
+    <div 
+      className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/20 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${authPattern})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'soft-light'
+      }}
+    >
+      {/* Background decorative shapes */}
+      <div 
+        className="absolute inset-0 opacity-15 bg-no-repeat bg-center bg-contain"
+        style={{
+          backgroundImage: `url(${authShapes})`,
+          backgroundSize: '70%',
+          backgroundPosition: 'left center'
+        }}
+      />
+      
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-primary/30 backdrop-blur-[1px]" />
+      
+      <div className="max-w-2xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 text-2xl font-bold text-primary">
@@ -127,10 +150,12 @@ const SignUp = () => {
           </p>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Get started with ChainLink Pro</CardTitle>
-            <CardDescription>
+        <Card className="card-elevated backdrop-blur-sm bg-background/95 border-primary/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Get started with ChainLink Pro
+            </CardTitle>
+            <CardDescription className="text-muted-foreground/80">
               Set up your company workspace and admin account
             </CardDescription>
           </CardHeader>
