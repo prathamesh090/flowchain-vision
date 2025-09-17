@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useNavigation } from '@/contexts/NavigationContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { 
   Bars3Icon, 
   XMarkIcon, 
@@ -13,6 +14,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { setDirection, setCurrentPage } = useNavigation();
+  const { openAuthModal } = useAuth();
 
   const navigation = [
     { name: 'Home', href: '/', index: 0 },
@@ -69,11 +71,18 @@ const Header: React.FC = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" className="btn-hero-outline" asChild>
-              <Link to="/login">Login</Link>
+            <Button 
+              variant="outline" 
+              className="btn-hero-outline" 
+              onClick={() => openAuthModal('login')}
+            >
+              Login
             </Button>
-            <Button className="btn-hero" asChild>
-              <Link to="/signup">Sign Up</Link>
+            <Button 
+              className="btn-hero" 
+              onClick={() => openAuthModal('signup')}
+            >
+              Sign Up
             </Button>
           </div>
 
@@ -110,11 +119,18 @@ const Header: React.FC = () => {
                 </button>
               ))}
               <div className="pt-4 pb-2 space-y-2">
-                <Button variant="outline" className="w-full btn-hero-outline" asChild>
-                  <Link to="/login">Login</Link>
+                <Button 
+                  variant="outline" 
+                  className="w-full btn-hero-outline" 
+                  onClick={() => { openAuthModal('login'); setMobileMenuOpen(false); }}
+                >
+                  Login
                 </Button>
-                <Button className="w-full btn-hero" asChild>
-                  <Link to="/signup">Sign Up</Link>
+                <Button 
+                  className="w-full btn-hero" 
+                  onClick={() => { openAuthModal('signup'); setMobileMenuOpen(false); }}
+                >
+                  Sign Up
                 </Button>
               </div>
             </div>
